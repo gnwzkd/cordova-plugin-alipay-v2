@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.alipay.sdk.app.PayTask;
+import com.alipay.sdk.app.EnvUtils;
 
 import android.os.Handler;
 import android.os.Message;
@@ -42,6 +43,7 @@ public class alipay extends CordovaPlugin {
         cordova.getThreadPool().execute(new Runnable() {
             @Override
             public void run() {
+                EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
                 PayTask alipay = new PayTask(cordova.getActivity());
                 Map<String, String> result = alipay.payV2(payInfo, true);
                 Log.i("msp", result.toString());
